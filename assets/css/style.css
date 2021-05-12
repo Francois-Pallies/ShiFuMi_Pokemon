@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: seagreen;
+}
+#gameArena {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/background.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#plateau {
+    width: 100%;
+    
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+#zoneScore {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+#scoreOrdi {
+
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#scoreJoueur {
+
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#zoneJeu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#choixOrdi {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 2px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#choixOrdi p {
+    font-size: 5em;
+}
+#choixJoueur {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 2px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+#zoneChoix {
+    position: fixed;
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#rose img, #main img, #cetoine img {
+    height: 100px;
+}
+.drag {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #choixJoueur.cetoine #animation {
+
+}
+#choixJoueur.main #animation {
+    
+}
+#choixJoueur.rose #animation {
+    
+} */
+
+/*Timer*/
+#timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+#timer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 30em;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+@keyframes timerAnim {
+    0% {
+        opacity: 0;
+        transform: scale(2);
+    }
+    30% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+@keyframes resultatAnim {
+    0% {
+        opacity: 0;
+        transform: scale(2);
+    }
+    10% {
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+#timer.on > #three p {
+
+    animation: timerAnim 1s forwards;
+}
+#timer.on > #two p {
+
+    animation: timerAnim 1s 1s forwards;
+}
+#timer.on > #one p{
+
+    animation: timerAnim 1s 2s forwards;
+}
+#timer.on > #resultat p{
+    font-size: 10em;
+    animation: resultatAnim 3s 3s forwards;
+}
+
+.rose {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/rose.png);
+    background-size: contain;
+}
+.cetoine {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/cetoine.png);
+    background-size: contain;
+}
+.main {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/main_player.png);
+    background-size: contain;
+}

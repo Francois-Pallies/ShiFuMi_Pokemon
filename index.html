@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifumi</title>
+
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="gameArena">
+        <!-- <button id="rose" value="rose">Rose</button>
+        <button id="main" value="main">Main</button>
+        <button id="cetoine" value="cetoine">Cetoine</button>
+        -->
+        
+        <div id="plateau">
+            <div id="zoneScore">
+                <div id="scoreOrdi">
+                    <h2>Ordinateur :</h2>
+                    <p id="victoireOrdi">0</p>
+                </div>
+                <div id="scoreJoueur">
+                    <h2>Joueur :</h2>
+                    <p id="victoireJoueur">0</p>
+                </div>
+            </div>
+            <div id="zoneJeu">
+                <div id="choixOrdi">
+                    <p>?</p>
+                </div>
+                <div id="choixJoueur">
+                    <div id="animation"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="zoneChoix">
+            <div id="rose" class="drag">
+                <img class="ui-draggable" src="assets/img/rose.png" alt="rose">
+            </div>
+            <div id="main" class="drag">
+                <img class="ui-draggable" src="assets/img/main_player.png" alt="rose">
+            </div>
+            <div id="cetoine" class="drag">
+                <img class="ui-draggable" src="assets/img/cetoine.png" alt="rose">
+            </div>
+        </div>
+
+        <div id="timer">
+            <div id="three">
+                <p>3</p>
+            </div>
+            <div id="two">
+                <p>2</p>
+            </div>
+            <div id="one">
+                <p>1</p>
+            </div>
+            <div id="resultat">
+                <p></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Script-->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
