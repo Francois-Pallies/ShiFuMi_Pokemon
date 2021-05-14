@@ -61,7 +61,7 @@ body {
     bottom: 0;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: bottom;
+    background-position: 0 80px;
 }
 #dialDiv button {
     display: none;
