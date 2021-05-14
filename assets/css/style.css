@@ -2,206 +2,425 @@
     margin: 0;
     padding: 0;
 }
-
 body {
-    background-color: seagreen;
+    background-color: black;
 }
 #gameArena {
-    position: fixed;
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    background-image: url(../img/background.webp);
+    height: 100vh;
+}
+#startScreen {
+    position: fixed;
+    z-index: 10;
+    width: 98vh;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    background-image: url(../img/interface/cliquer.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
-#plateau {
-    width: 100%;
-    
-    display: grid;
-    grid-template-columns:  1fr 1fr 1fr;
-}
-#zoneScore {
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-}
-#scoreOrdi {
-
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-#scoreJoueur {
-
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#zoneJeu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-#choixOrdi {
-    width: 200px;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: solid 2px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#choixOrdi p {
-    font-size: 5em;
-}
-#choixJoueur {
-    width: 200px;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: solid 2px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-#zoneChoix {
+#zoneAttaque {
     position: fixed;
-    width: 100%;
-    height: 150px;
+    z-index: 6;
+    width: 98vh;
+    height: 100vh;
+    top: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.3);
+    display: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+}
+#zoneAttaque.winnersalameche {
+    background-image: url(../img/flammeche.png);
+    background-size: 50%;
+    background-position: 300px 150px;
+}
+#zoneAttaque.winnercarapuce {
+    background-image: url(../img/pistolet_a_o.png);
+    background-size: 50%;
+    background-position: 300px 150px;
+}
+#zoneAttaque.winnerbulbizarre {
+    background-image: url(../img/tranchherbe.png);
+    background-size: 50%;
+    background-position: 300px 150px;
+}
+#dialDiv {
+    position: fixed;
+    z-index: 1;
+    width: 98vh;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+#dialDiv button {
+    display: none;
+    border: none;
+    background-color: none;
+    position: absolute;
+    z-index: 15;
+}
+#yes {
+    bottom: 75px;
+    right: 175px;
+}
+#no {
+    bottom: 75px;
+    right: 75px;
+}
+#interface {
+    width: 98vh;
+    height: 100vh;
+}
+#fond {
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+    width: 98vh;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/interface/fond.png);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
-#rose img, #main img, #cetoine img {
-    height: 100px;
+#dialog {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
+    background-image: url(../img/interface/dialogEmpty.png);
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#hudOrdi {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
+    background-image: url(../img/interface/ordiHud.png);
+    background-size: contain;
+}
+@keyframes ordiHudEntrance {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0;
+    }
+}
+@keyframes ordiHudOut {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+#hudOrdi.start {
+    animation: ordiHudEntrance 0.5s forwards;
+}
+#ordiHud.out {
+    animation: ordiHudOut 0.5s forwards;
+}
+#hudJoueur {
+    position: relative;
+    z-index: 7;
+    bottom: 0;
+    right: -100%;
+    width: 98vh;
+    height: 100vh;
+    background-image: url(../img/interface/hudJoueur.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+@keyframes joueurHudEntrance {
+    from {
+        right: -100%;
+    }
+    to {
+        right: 0;
+    }
+}
+@keyframes joueurHudOut {
+    from {
+        right: 0;
+    }
+    to {
+        right: -100%;
+    }
+}
+#hudJoueur.start {
+    animation: joueurHudEntrance 0.5s forwards;
+}
+#hudJoueur.out {
+    animation: joueurHudOut 0.5s forwards;
+}
+#choixPokemon {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+}
+.col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.col > img {
+    transform: scale(0.8);
+}
+.drag img{
+    width: 100px;
 }
 .drag {
     width: 100px;
     height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
-/* #choixJoueur.cetoine #animation {
-
-}
-#choixJoueur.main #animation {
-    
-}
-#choixJoueur.rose #animation {
-    
-} */
-
-/*Timer*/
-#timer {
+#choixJoueur {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
+    z-index: 7;
+    top: 300px;
+    left: 20px;
+    width: 400px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
 }
-#timer p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#dropZone {
     position: absolute;
-    font-size: 30em;
-    opacity: 0;
-    top: 0;
-    right: 0;
+    z-index: 5;
+    bottom: 320px;
+    left: 125px;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    border: dashed 2px rgba(0, 0, 0, 0.3);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#choixJoueur.bulbizarre {
+    background-image: url(../img/bulbizarre_dos.png);
+}
+#choixJoueur.salameche {
+    background-image: url(../img/salameche_dos.png);
+}
+#choixJoueur.carapuce {
+    background-image: url(../img/carapuce_dos.png);
+}
+@keyframes joueurArenaEnter {
+    from {
+        left: -400px;
+    }
+    to {
+        left: 20px;
+    }
+}
+#choixJoueur.enter {
+    animation: joueurArenaEnter 1s forwards;
+}
+@keyframes joueurArenaOut {
+    from {
+        left: 20px;
+    }
+    to {
+        left: -400px;
+    }
+}
+#choixJoueur.out {
+    animation: joueurArenaOut 1s forwards;
+}
+#choixOrdi {
+    position: absolute;
+    z-index: 5;
+    top: 100px;
+    right: -200px;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+#choixOrdi.bulbizarre {
+    background-image: url(../img/bulbizarre_face.png);
+}
+#choixOrdi.salameche {
+    background-image: url(../img/salameche.png);
+}
+#choixOrdi.carapuce {
+    background-image: url(../img/carapuce.png);
+}
+@keyframes ordiArenaEnter {
+    from {
+        right: -200px;
+    }
+    to {
+        right: 150px;
+    }
+}
+#choixOrdi.enter {
+    animation: ordiArenaEnter 1s forwards;
+}
+@keyframes ordiArenaOut {
+    from {
+        right: 150px;
+    }
+    to {
+        right: -200px;
+    }
+}
+#choixOrdi.out {
+    animation: ordiArenaOut 1s forwards;
+}
+#pokemonOrdi {
+    position: absolute;
+    z-index: 2;
     bottom: 0;
-    left: 0;
-}
-@keyframes timerAnim {
-    0% {
-        opacity: 0;
-        transform: scale(2);
-    }
-    30% {
-        opacity: 1;
-    }
-    70% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1);
-    }
-}
-@keyframes resultatAnim {
-    0% {
-        opacity: 0;
-        transform: scale(2);
-    }
-    10% {
-        opacity: 1;
-    }
-    25% {
-        transform: scale(1);
-    }
-    75% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-}
-#timer.on > #three p {
-
-    animation: timerAnim 1s forwards;
-}
-#timer.on > #two p {
-
-    animation: timerAnim 1s 1s forwards;
-}
-#timer.on > #one p{
-
-    animation: timerAnim 1s 2s forwards;
-}
-#timer.on > #resultat p{
-    font-size: 10em;
-    animation: resultatAnim 3s 3s forwards;
-}
-
-.rose {
+    width: 98vh;
+    height: 100vh;
     background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../img/rose.png);
     background-size: contain;
 }
-.cetoine {
+#pokemonOrdi.bulbizarre {
+    background-image: url(../img/interface/ordiCallBulbizarre.png);
+}
+#pokemonOrdi.salameche {
+    background-image: url(../img/interface/ordiCallSalameche.png);
+}
+#pokemonOrdi.carapuce {
+    background-image: url(../img/interface/ordiCallCarapuce.png);
+}
+#pokemonJoueur {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
     background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../img/cetoine.png);
     background-size: contain;
 }
-.main {
+#pokemonJoueur.bulbizarre {
+    background-image: url(../img/interface/joueurCallBulbizarre.png);
+}
+#pokemonJoueur.salameche {
+    background-image: url(../img/interface/joueurCallSalameche.png);
+}
+#pokemonJoueur.carapuce {
+    background-image: url(../img/interface/joueurCallCarapuce.png);
+}
+#pvOrdi {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
+    background-image: url(../img/interface/ordiPVfull.png);
     background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../img/main_player.png);
     background-size: contain;
+}
+#pvJoueur {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
+    background-image: url(../img/interface/joueurPVfull.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#scoreManche {
+    position: absolute;
+    z-index: 8;
+    top: 0;
+    bottom: 0;
+    width: 98vh;
+    height: 100vh;
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/*Dialogue règles*/
+#dialDiv.regle {
+    background-image: url(../img/interface/start.png);
+}
+/*Dialogue restart*/
+#dialDiv.wonRestart {
+    background-image: url(../img/interface/gameWon.png);
+}
+#dialDiv.looseRestart{
+    background-image: url(../img/interface/gameLoose.png)
+}
+/*Dialogues choix*/
+#dialDiv.playersalameche {
+    background-image: url(../img/interface/dialJoueurCallSalameche.png);
+}
+#dialDiv.playercarapuce {
+    background-image: url(../img/interface/dialJoueurCallCarapuce.png);
+}
+#dialDiv.playerbulbizarre {
+    background-image: url(../img/interface/dialJoueurCallBulbizarre.png);
+}
+#dialDiv.ordisalameche {
+    background-image: url(../img/interface/dialOrdiCallSalameche.png);
+}
+#dialDiv.ordicarapuce {
+    background-image: url(../img/interface/dialOrdiCallCarapuce.png);
+}
+#dialDiv.ordibulbizarre {
+    background-image: url(../img/interface/dialOrdiCallBulbizarre.png);
+}
+
+/***********Dialogue phase combat**********/
+#dialDiv.attaquesalameche {
+    background-image: url(../img/interface/winSalameche.png);
+}
+#dialDiv.attaquecarapuce {
+    background-image: url(../img/interface/winCarapuce.png);
+}
+#dialDiv.attaquebulbizarre {
+    background-image: url(../img/interface/winBulbizarre.png);
+}
+
+/*Dialogue résolution du combat*/
+#dialDiv.eq {
+    background-image: url(../img/interface/dialEq.png);
+}
+#dialDiv.ordiWins {
+    background-image: url(../img/interface/dialogPerdu.png);
+}
+#dialDiv.playerWins {
+    background-image: url(../img/interface/dialogGagne.png);
+}
+/*Phase inter combats*/
+#dialDiv.chooseNextEq {
+    background-image: url(../img/interface/chooseNext-02.png);
 }
