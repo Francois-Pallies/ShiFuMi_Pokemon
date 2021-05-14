@@ -13,10 +13,12 @@ lowHP.volume = 1
 
 $('#startScreen').on('click', function(){
     setTimeout(function(){$('#startScreen').hide()
+    $('#choixPokemon').hide()
     }, 900)
     setTimeout(function(){
         $('#dialDiv').removeClass('regle')
         $('#dialDiv').hide()
+        $('#choixPokemon').show()
     }, 4000)
     musique.play()
 })
@@ -58,6 +60,7 @@ $(function() {
         drop: function(event, ui){ 
             $('#dropZone').css({'background-image': 'url(assets/img/pokeball.png)'})
             $('#dialDiv').addClass(`player${choixJoueur}`)
+            $('#choixPokemon').hide()
             $('#dialDiv').show()
 
             
@@ -93,8 +96,7 @@ function resultat() {
         choixJoueur === 'salameche' &&  choixOrdinateur === 'bulbizarre') {
                 pvOrdi -= 1                
                 if (pvOrdi === 0) {
-                    musique.pause()
-                    victory.play()      
+                         
                      //Dialogue & phase Attaque 2s
                         $('#dialDiv').removeClass(`ordi${choixOrdinateur}`)
                         $('#dialDiv').addClass(`attaque${choixJoueur}`)
@@ -106,6 +108,8 @@ function resultat() {
                         setTimeout(function(){
                             $('#zoneAttaque').hide()
                             $('#zoneAttaque').removeClass(`winner${choixJoueur}`)
+                            musique.pause()
+                            victory.play() 
                         }, 1500)
                         setTimeout(function(){
                             pv()
@@ -154,6 +158,7 @@ function resultat() {
                     setTimeout(function(){
                         $('#dialDiv').removeClass('playerWins')
                         $('#dialDiv').hide()
+                        $('#choixPokemon').show()
                         $('#dropZone').css({'background-image': 'none'})
                         $('#dropZone').css({'opacity': '1'})
                         $('#choixJoueur').removeClass('enter')
@@ -177,6 +182,7 @@ function resultat() {
         setTimeout(function(){
             $('#dialDiv').removeClass('chooseNextEq')
             $('#dialDiv').hide()
+            $('#choixPokemon').show()
             $('#dropZone').css({'background-image': 'none'})
             $('#dropZone').css({'opacity': '1'}) 
             $('#pokemonJoueur').removeClass('carapuce bulbizarre salameche') 
@@ -246,6 +252,7 @@ function resultat() {
                 setTimeout(function(){
                         $('#dialDiv').removeClass('ordiWins')
                         $('#dialDiv').hide()
+                        $('#choixPokemon').show()
                         $('#dropZone').css({'background-image': 'none'})
                         $('#dropZone').css({'opacity': '1'})
                         $('#choixOrdi').removeClass('enter')
@@ -270,6 +277,7 @@ function pv() {
     }
     else if (pvJoueur === 0) {
         lowHP.pause()
+        lowHP.currentTime = 0
         $('#pvJoueur').css({'background-image': 'none'})
     }
     if (pvOrdi === 3) {
@@ -286,8 +294,9 @@ function pv() {
     }
 }
 $('#yes').on('click', function(){
-    victory.pause()  
+    victory.pause()
     musique.play()
+    musique.currentTime = 0
     pvJoueur = 3
     pvOrdi = 3
     pv()
@@ -301,6 +310,7 @@ $('#yes').on('click', function(){
 $('#hudJoueur').removeClass('out')
     setTimeout(function(){
         $('#dialDiv').hide()
+        $('#choixPokemon').show()
     }, 3000)
 })
 $('#no').on('click', function(){
